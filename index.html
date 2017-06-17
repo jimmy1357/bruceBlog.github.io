@@ -236,6 +236,67 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Hexo-Admin-插件错误小结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/" class="article-date">
+      <time datetime="2017-06-17T05:48:35.000Z" itemprop="datePublished">2017-06-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/">Errors when using Hexo Admin </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Errors-when-using-Hexo-Admin"><a href="#Errors-when-using-Hexo-Admin" class="headerlink" title="Errors when using Hexo Admin"></a>Errors when using Hexo Admin</h1><h3 id="1-deploy-Config-value-“admin-deployCommand”-not-found"><a href="#1-deploy-Config-value-“admin-deployCommand”-not-found" class="headerlink" title="1.deploy: Config value “admin.deployCommand” not found"></a>1.deploy: Config value “admin.deployCommand” not found</h3><p>create deploy-script in <strong><em>project dir</em></strong>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch hexo-deploy.sh</div><div class="line">chmod a+x hexo-deploy.sh</div></pre></td></tr></table></figure>
+<p>with such 2 lines for example or any custom code:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env sh</span></div><div class="line">hexo deploy -g</div></pre></td></tr></table></figure>
+<p>then, edit <strong><em>_config.yml</em></strong>:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">admin</span>:</div><div class="line">  <span class="attribute">deployCommand</span>: <span class="string">'./hexo-deploy.sh'</span></div></pre></td></tr></table></figure>
+<h3 id="2-could-not-read-Username-for-‘https-github-com‘-No-such-device-or-address"><a href="#2-could-not-read-Username-for-‘https-github-com‘-No-such-device-or-address" class="headerlink" title="2.could not read Username for ‘https://github.com‘: No such device or address"></a>2.could not read Username for ‘<a href="https://github.com" target="_blank" rel="external">https://github.com</a>‘: No such device or address</h3><h3 id="3-about-password-protection"><a href="#3-about-password-protection" class="headerlink" title="3.about password protection"></a>3.about password protection</h3><p>for more details, click <a href="https://github.com/jaredly/hexo-admin" target="_blank" rel="external">here</a></p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Just-for-fun" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
