@@ -263,17 +263,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Errors-when-using-Hexo-Admin"><a href="#Errors-when-using-Hexo-Admin" class="headerlink" title="Errors when using Hexo Admin"></a>Errors when using Hexo Admin</h1><h3 id="1-deploy-Config-value-“admin-deployCommand”-not-found"><a href="#1-deploy-Config-value-“admin-deployCommand”-not-found" class="headerlink" title="1.deploy: Config value “admin.deployCommand” not found"></a>1.deploy: Config value “admin.deployCommand” not found</h3><p>create deploy-script in <strong><em>project dir</em></strong>:</p>
+              <h1 id="Errors-when-using-Hexo-Admin"><a href="#Errors-when-using-Hexo-Admin" class="headerlink" title="Errors when using Hexo Admin"></a>Errors when using Hexo Admin</h1><h3 id="1-deploy-Config-value-“admin-deployCommand”-not-found"><a href="#1-deploy-Config-value-“admin-deployCommand”-not-found" class="headerlink" title="1.deploy: Config value “admin.deployCommand” not found"></a>1.deploy: Config value “admin.deployCommand” not found</h3><p>create deploy-script in <strong><em>project dir</em></strong>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch hexo-deploy.sh</div><div class="line">chmod a+x hexo-deploy.sh</div></pre></td></tr></table></figure>
 <p>with such 2 lines for example or any custom code:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env sh</span></div><div class="line">hexo g</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
 <p>then, edit <strong><em>_config.yml</em></strong>:</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">admin</span>:</div><div class="line">  <span class="attribute">deployCommand</span>: <span class="string">'./hexo-deploy.sh'</span></div></pre></td></tr></table></figure>
-<h3 id="2-could-not-read-Username-for-‘https-github-com‘-No-such-device-or-address"><a href="#2-could-not-read-Username-for-‘https-github-com‘-No-such-device-or-address" class="headerlink" title="2.could not read Username for ‘https://github.com‘: No such device or address"></a>2.could not read Username for ‘<a href="https://github.com" target="_blank" rel="external">https://github.com</a>‘: No such device or address</h3><p>set the git params in <strong><em>_config.yml</em></strong> as below:</p>
-<p>change the https protocol to git protocol</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">deploy:</span></div><div class="line"><span class="symbol">  type:</span> git</div><div class="line"><span class="symbol">  repository:</span> <span class="string">"git@github.com:jimmy1357/bruceBlog.github.io.git"</span></div><div class="line"><span class="symbol">  branch:</span> master</div></pre></td></tr></table></figure>
-<h3 id="3-about-password-protection"><a href="#3-about-password-protection" class="headerlink" title="3.about password protection"></a>3.about password protection</h3><p>for more details, click <a href="https://github.com/jaredly/hexo-admin" target="_blank" rel="external">here</a></p>
-
+          
       
       
     </div>
@@ -283,6 +279,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/#more">For More >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -328,7 +328,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Just-for-fun"><a href="#Just-for-fun" class="headerlink" title="Just for fun"></a>Just for fun</h1><hr>
+              <h1 id="Just-for-fun"><a href="#Just-for-fun" class="headerlink" title="Just for fun"></a>Just for fun</h1><hr>
 <p><strong>Cmd Markdown</strong> 是一个便捷高效的工具，可以用来:</p>
 <blockquote>
 <ul>
@@ -340,42 +340,7 @@
 <h2 id="1-来写一个质量守恒公式"><a href="#1-来写一个质量守恒公式" class="headerlink" title="1.来写一个质量守恒公式"></a>1.来写一个质量守恒公式</h2><p>$$E=mc^2$$</p>
 <h2 id="2-高亮一段代码"><a href="#2-高亮一段代码" class="headerlink" title="2.高亮一段代码"></a>2.高亮一段代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">printHello</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"Hello, world"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'_main_'</span>:</div><div class="line">    printHello()</div></pre></td></tr></table></figure>
 <p><strong>注意</strong> 上面这一段代码，前面的前缀是数字建旁边的点号，而不是单引号</p>
-<h2 id="3-图表怎么编写"><a href="#3-图表怎么编写" class="headerlink" title="3.图表怎么编写"></a>3.图表怎么编写</h2><h3 id="3-1-添加表格"><a href="#3-1-添加表格" class="headerlink" title="3.1 添加表格"></a>3.1 添加表格</h3><table>
-<thead>
-<tr>
-<th>Tables</th>
-<th style="text-align:center">Are</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>col 3 is</td>
-<td style="text-align:center">right-aligned</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td style="text-align:center">are neat</td>
-<td style="text-align:right">$1</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-2-添加一张手机拍的图片"><a href="#3-2-添加一张手机拍的图片" class="headerlink" title="3.2 添加一张手机拍的图片"></a>3.2 添加一张手机拍的图片</h3><p>可以支持：</p>
-<blockquote>
-<ul>
-<li>从网页上复制的图片，在图片上右键点击并复制</li>
-<li>从本地打开图片以后，右键–&gt;复制</li>
-</ul>
-</blockquote>
-<p><img src="/bruceBlog.github.io/images/pasted-0.png" alt="upload successful"></p>
-<h3 id="3-3-流程图"><a href="#3-3-流程图" class="headerlink" title="3.3 流程图"></a>3.3 流程图</h3><p>流程图太复杂了，还是用<a href="https://www.processon.com/" target="_blank" rel="external">ProcessOn</a>或者visio绘图吧。</p>
-
+          
       
       
     </div>
@@ -389,6 +354,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/bruceBlog.github.io/tags/Article/">Article</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/bruceBlog.github.io/tags/Test/">Test</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/bruceBlog.github.io/2017/06/16/Just-for-fun/#more">For More >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

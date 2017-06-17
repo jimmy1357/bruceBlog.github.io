@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://jimmy1357.github.io/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/index.html">
 <meta property="og:site_name" content="July7">
 <meta property="og:description" content="Errors when using Hexo Admin1.deploy: Config value “admin.deployCommand” not foundcreate deploy-script in project dir: 12touch hexo-deploy.shchmod a+x hexo-deploy.sh with such 2 lines for example or a">
-<meta property="og:updated_time" content="2017-06-17T13:29:42.235Z">
+<meta property="og:updated_time" content="2017-06-17T13:53:43.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Errors when using Hexo Admin ">
 <meta name="twitter:description" content="Errors when using Hexo Admin1.deploy: Config value “admin.deployCommand” not foundcreate deploy-script in project dir: 12touch hexo-deploy.shchmod a+x hexo-deploy.sh with such 2 lines for example or a">
@@ -272,6 +272,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env sh</span></div><div class="line">hexo g</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
 <p>then, edit <strong><em>_config.yml</em></strong>:</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">admin</span>:</div><div class="line">  <span class="attribute">deployCommand</span>: <span class="string">'./hexo-deploy.sh'</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="2-could-not-read-Username-for-‘https-github-com‘-No-such-device-or-address"><a href="#2-could-not-read-Username-for-‘https-github-com‘-No-such-device-or-address" class="headerlink" title="2.could not read Username for ‘https://github.com‘: No such device or address"></a>2.could not read Username for ‘<a href="https://github.com" target="_blank" rel="external">https://github.com</a>‘: No such device or address</h3><p>set the git params in <strong><em>_config.yml</em></strong> as below:</p>
 <p>change the https protocol to git protocol</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">deploy:</span></div><div class="line"><span class="symbol">  type:</span> git</div><div class="line"><span class="symbol">  repository:</span> <span class="string">"git@github.com:jimmy1357/bruceBlog.github.io.git"</span></div><div class="line"><span class="symbol">  branch:</span> master</div></pre></td></tr></table></figure>
@@ -334,7 +335,7 @@
         <p><span>本文标题:</span><a href="/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/">Errors when using Hexo Admin </a></p>
         <p><span>文章作者:</span><a href="/bruceBlog.github.io/" title="访问 Bruce J 的个人博客">Bruce J</a></p>
         <p><span>发布时间:</span>2017年06月17日 - 13时48分</p>
-        <p><span>最后更新:</span>2017年06月17日 - 21时29分</p>
+        <p><span>最后更新:</span>2017年06月17日 - 21时53分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/" title="Errors when using Hexo Admin ">https://jimmy1357.github.io/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jimmy1357.github.io/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/　　作者: Bruce J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
