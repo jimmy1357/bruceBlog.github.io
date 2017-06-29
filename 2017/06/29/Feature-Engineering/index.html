@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Feature Engineering | July7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="特征变换">
+<meta name="keywords" content="Feature Engineering">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Feature Engineering">
+<meta property="og:url" content="https://jimmy1357.github.io/bruceBlog.github.io/2017/06/29/Feature-Engineering/index.html">
+<meta property="og:site_name" content="July7">
+<meta property="og:description" content="特征变换">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-2.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-4.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-5.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-6.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-7.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-8.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-9.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-10.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-11.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-12.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-13.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-14.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-15.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-16.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-17.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-18.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-19.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-20.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-21.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-22.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-23.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-24.png">
+<meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-25.png">
+<meta property="og:updated_time" content="2017-06-29T15:06:04.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Feature Engineering">
+<meta name="twitter:description" content="特征变换">
+<meta name="twitter:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-2.png">
+  
+    <link rel="alternative" href="/atom.xml" title="July7" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/bruceBlog.github.io/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/bruceBlog.github.io/css/style.css">
+  <link rel="stylesheet" href="/bruceBlog.github.io/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/bruceBlog.github.io/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/bruceBlog.github.io/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/bruceBlog.github.io/js/pace.js"></script>
+    <link href="/bruceBlog.github.io/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/bruceBlog.github.io/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/bruceBlog.github.io/" class="profilepic">
+            
+            <img lazy-src="/bruceBlog.github.io/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/bruceBlog.github.io/" title="Hi Mate">Bruce J</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">The very beginning mind itself is the most accomplished mind of true enlightenment.</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Links</li>
+                        
+                        
+                        <li>About</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/bruceBlog.github.io/">Home</a></li>
+                        
+                            <li><a href="/bruceBlog.github.io/works">Works</a></li>
+                        
+                            <li><a href="/bruceBlog.github.io/Essays">Essays</a></li>
+                        
+                            <li><a href="/bruceBlog.github.io/about">About</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/jimmy1357" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/bruceBlog.github.io/tags/Feature-Engineering/" style="font-size: 10px;">Feature Engineering</a> <a href="/bruceBlog.github.io/tags/hexo/" style="font-size: 20px;">hexo</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jimmy1357.github.io/bruceBlog.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">旅行 拍照 音乐 足球 向往自由的伪文艺青年</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/bruceBlog.github.io/" title="Me">Bruce J</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/bruceBlog.github.io/" class="profilepic">
+                
+                    <img lazy-src="/bruceBlog.github.io/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/bruceBlog.github.io/" title="Me">Bruce J</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">The very beginning mind itself is the most accomplished mind of true enlightenment.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/bruceBlog.github.io/">Home</a></li>
+                
+                    <li><a href="/bruceBlog.github.io/works">Works</a></li>
+                
+                    <li><a href="/bruceBlog.github.io/Essays">Essays</a></li>
+                
+                    <li><a href="/bruceBlog.github.io/about">About</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/jimmy1357" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Feature-Engineering" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/bruceBlog.github.io/2017/06/29/Feature-Engineering/" class="article-date">
+      <time datetime="2017-06-29T14:11:00.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Feature Engineering
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/bruceBlog.github.io/categories/Machine-Learning/">Machine Learning</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/bruceBlog.github.io/tags/Feature-Engineering/">Feature Engineering</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="特征变换"><a href="#特征变换" class="headerlink" title="特征变换"></a>特征变换</h1><a id="more"></a>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-2.png" alt="特征变换"><br></div>
+
+
+<h2 id="1-1-特征尺度变换"><a href="#1-1-特征尺度变换" class="headerlink" title="1.1 特征尺度变换"></a>1.1 特征尺度变换</h2><p>支持稠密或稀疏的数值类特征进行常见的尺度变化。例如，对于输入的数据x，使用如下尺度变化函数输出y。</p>
+<p>$$ y=log_2(x) $$</p>
+<p>尺度变化函数还包括log10,ln,abs,sqrt等。</p>
+<h2 id="1-2-特征异常平滑"><a href="#1-2-特征异常平滑" class="headerlink" title="1.2 特征异常平滑"></a>1.2 特征异常平滑</h2><p>根据用户选择异常特征，将特征含有异常的数据平滑到一定区间,支持稀疏和稠密数值类特征。特征平滑组件只是将异常取值的特征值修正成正常值，本身不过滤或删除任何记录，输入数据维度和条数都不变。</p>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-4.png" alt="特征异常平滑"><br></div>
+
+<p><strong>Zscore平滑</strong>： 如果特征分布遵循正态分布，考虑噪音一般在-3sigma和3sigma之外，ZScore是将该范围数据平滑到[-3sigma,3sigma]。例如，某个特征遵循正太分布，均值为0，标准差为3，因此-10的特征值会被识别为异常而修正为-3<em>3+0=-9，同理,10会被修正为3</em>3+0 = 9</p>
+<p><strong>百分位平滑</strong> : 将数据分布在[minPer, maxPer]分位之外的数据平滑平滑到minPer/maxPer这两个分位点。例如，age特征取值0-200，设置minPer为0，maxPer为50%，那么在0-100之外的特征取值都会被修正成0或者100</p>
+<p><strong>阈值平滑</strong> : 将数据分布在[minThresh, maxThresh]之外的数据平滑到minThresh和maxThresh这两个数据点。例如，age特征取值0-200，设置minThresh=10，maxThresh=80，那么在0-80之外的特征取值都会被修正成0或者80。</p>
+<h2 id="1-3异常检测模块"><a href="#1-3异常检测模块" class="headerlink" title="1.3异常检测模块"></a>1.3异常检测模块</h2><p>检测输入数据集中可能存在的异常数据。</p>
+<p>针对连续值特征：按箱线图最大值和最小值检测异常特征。如下图，主要包含六个数据节点，将一组数据从大到小排列，分别计算出他的上边缘，上四分位数Q3，中位数，下四分位数Q1，下边缘，还有一个异常值。</p>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-5.png" alt="箱线图"><br></div>
+
+<p>一批数据中的异常值值得关注，忽视异常值的存在是十分危险的，不加剔除地把异常值包括进数据的计算分析过程中，对结果会带来不良影响；重视异常值的出现，分析其产生的原因，常常成为发现问题进而改进决策的契机。<strong>箱形图为我们提供了识别异常值的一个标准：异常值被定义为小于Q1－1.5IQR或大于Q3+1.5IQR的值（IQR表示四分位距，其值为Q1到Q3的距离）</strong>。虽然这种标准有点任意性，但它来源于经验判断，经验表明它在处理需要特别注意的数据方面表现不错。这与识别异常值的经典方法有些不同。众所周知，基于正态分布的3σ法则或z分数方法是以假定数据服从正态分布为前提的，但<strong>实际数据往往并不严格服从正态分布</strong>。它们判断异常值的标准是以计算数据批的均值和标准差为基础的，而均值和标准差的耐抗性极小，异常值本身会对它们产生较大影响，这样产生的异常值个数不会多于总数0.7%。显然，应用这种方法于非正态分布数据中判断异常值，其有效性是有限的。<strong>箱形图的绘制依靠实际数据，不需要事先假定数据服从特定的分布形式，没有对数据作任何限制性要求，它只是真实直观地表现数据形状的本来面貌</strong>；另一方面，箱形图判断异常值的标准以四分位数和四分位距为基础，四分位数具有一定的耐抗性，多达25%的数据可以变得任意远而不会很大地扰动四分位数，所以异常值不能对这个标准施加影响，箱形图识别异常值的结果比较客观。由此可见，箱形图在识别异常值方面有一定的优越性。</p>
+<p><strong>针对枚举值特征</strong> : 按照枚举特征的取值频率，按照阈值过滤异常特征。</p>
+<h2 id="1-4-One-hot编码"><a href="#1-4-One-hot编码" class="headerlink" title="1.4 One-hot编码"></a>1.4 One-hot编码</h2><p>对于每一个特征，如果它有m个可能值，那么经过one-hot编码后，就变成了m个二元特征。并且，这些特征互斥，每次只有一个激活。因此，数据会变成稀疏的。</p>
+<h2 id="1-5-特征离散"><a href="#1-5-特征离散" class="headerlink" title="1.5 特征离散"></a>1.5 特征离散</h2><p>续值的取值空间可能是无穷的，为了便于表示和在模型中处理，需要对连续值特征进行离散化处理。</p>
+<p><strong>无监督离散包括等频离散和等距离散。</strong></p>
+<p><strong>等距离散（等值划分）</strong>：是将特征按照值域进行均分，每一段内的取值等同处理。例如某个特征的取值范围为[0，10]，我们可以将其划分为10段，[0，1)，[1，2)，…，[9，10)。</p>
+<p><strong>等频离散（等量划分）</strong>：是根据样本总数进行均分，每段等量个样本划分为1段。例如距离特征，取值范围［0，3000000］，现在需要切分成10段，如果按照等距划离散划分的话，会发现绝大部分样本都在第1段中。使用等频划分就会避免这种问题，最终可能的切分是[0，100)，[100，300)，[300，500)，..，[10000，3000000]，前面的区间划分比较密，后面的比较稀疏。</p>
+<p><strong>有监督离散包括基于Gini增益离散，基于熵增益离散</strong>。属性(离散特征)的选择方法总是选择最好的属性作为分裂属性，即让每个分支的记录的类别尽可能纯。它将所有属性列表的属性进行按某个标准排序，从而选出最好的属性。属性选择方法很多，这里仅介绍三个常用的方法：信息增益（Information gain）、增益比率（gain ratio）、基尼指数（Gini index）。</p>
+<p><strong>熵</strong>：熵定义为信息的期望值。先看看信息的定义：</p>
+<p>$$ l(x_i)=-log_2 p(x_i) $$</p>
+<p>其中，p(x_i)是选择该分类的概率，D的熵为</p>
+<p>$$ Entropy=H(D)=E(I(D))=-\sum_{i}^n p_i log_2 (p_i) $$</p>
+<p>其中的n表示数据集D中类别C的个数，P_i表示D中任意一个记录属于C_i的概率，计算时P_i=(D中属于Ci类的集合的记录个数/|D|)。Info(D)表示将数据集D不同的类分开需要的信息量。</p>
+<p><strong>熵越大，说明系统越混乱，携带的信息就越少。熵越小，说明系统越有序，携带的信息就越多。</strong>信息的作用就是在于消除不确定性。</p>
+<p><strong>信息增益</strong>：假设我们选择属性R作为分裂属性，数据集D中，R有k个不同的取值{V1,V2,…,Vk}，于是可将D根据R的值分成k组{D1,D2,…,Dk}，按R进行分裂后，将数据集D不同的类分开还需要的信息量为：</p>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-6.png" alt="信息增益"><br></div>
+
+<p>信息增益的定义为分裂前后，两个信息量之差：</p>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-7.png" alt="信息量之差"><br></div>
+
+<p>信息增益Gain(R)表示属性R给分类带来的信息量，我们寻找Gain最大的属性，就能使分类尽可能的纯，即最可能的把不同的类分开。不过我们发现对所有的属性Info(D)都是一样的，所以求最大的Gain可以转化为求最小的InfoR(D)。这里引入Info(D)只是为了说明背后的原理，方便理解，实现时我们不需要计算Info(D)。举一个例子，数据集D如下</p>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-8.png" alt="eg"><br></div>
+
+<p>这个数据集是根据一个人的年龄、收入、是否学生以及信用等级来确定他是否会购买电脑，即最后一列“是否购买电脑”是类标。现在我们用信息增益选出最最佳的分类属性，计算按年龄分裂后的信息量：</p>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-9.png" alt="Info_age"><br></div>
+
+<p>整个式子由三项累加而成，第一项为青少年，14条记录中有5条为青少年，其中2（占2/5）条购买电脑，3（占3/5）条不购买电脑。第二项为中年，第三项为老年。类似的，有：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-10.png" alt="Info_income"><br></div></p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-11.png" alt="Info_stu"><br></div><br>可以得出Info年龄(D)最小，即以年龄分裂后，分得的结果中类标最纯，此时已年龄作为根结点的测试属性，根据青少年、中年、老年分为三个分支：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-12.png" alt="trees"><br></div><br>注意，年龄这个属性用过后，之后的操作就不需要年龄了，即把年龄从attributeList中删掉。往后就按照同样的方法，构建D1,D2,D3对应的决策子树。ID3算法使用的就是基于信息增益的选择属性方法。</p>
+<p><strong>增益比率（gain ratio）</strong></p>
+<p>信息增益选择方法有一个很大的缺陷，它总是会倾向于选择属性值多的属性，如果我们在上面的数据记录中加一个姓名属性，假设14条记录中的每个人姓名不同，那么信息增益就会选择姓名作为最佳属性，因为按姓名分裂后，每个组只包含一条记录，而每个记录只属于一类（要么购买电脑要么不购买），因此纯度最高，以姓名作为测试分裂的结点下面有14个分支。但是这样的分类没有意义，它没有任何泛化能力。增益比率对此进行了改进，它引入一个分裂信息：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-13.png" alt="split info"><br></div><br>增益比率定义为信息增益与分裂信息的比率：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-14.png" alt="Gain ratio"><br></div><br>我们找GainRatio最大的属性作为最佳分裂属性。如果一个属性的取值很多，那么SplitInfoR(D)会大，从而使GainRatio(R)变小。不过增益比率也有缺点，SplitInfo(D)可能取0，此时没有计算意义；且当SplitInfo(D)趋向于0时，GainRatio(R)的值变得不可信，改进的措施就是在分母加一个平滑，这里加一个所有分裂信息的平均值：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-15.png" alt="mean"><br></div><br><strong>基尼指数（Gini index）</strong></p>
+<p>基尼指数是另外一种数据的不纯度的度量方法，其定义如下：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-16.png" alt="Gini index"><br></div><br>其中的m仍然表示数据集D中类别C的个数，Pi表示D中任意一个记录属于Ci的概率，计算时Pi=(D中属于Ci类的集合的记录个数/|D|)。如果所有的记录都属于同一个类中，则P1=1，Gini(D)=0，此时不纯度最低。在CART(Classification and Regression Tree)算法中利用基尼指数构造二叉决策树，对每个属性都会枚举其属性的非空真子集，以属性R分裂后的基尼系数为：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-17.png" alt="Gini_R"><br></div><br>D1为D的一个非空真子集，D2为D1在D的补集，即D1+D2=D，对于属性R来说，有多个真子集，即GiniR(D)有多个值，但我们选取最小的那么值作为R的基尼指数。最后：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-18.png" alt="delta Gini"><br></div><br>我们转Gini(R)增量最大的属性作为最佳分裂属性。</p>
+<p>参考：<a href="http://www.cnblogs.com/fengfenggirl/p/classsify_decision_tree.html" target="_blank" rel="external">http://www.cnblogs.com/fengfenggirl/p/classsify_decision_tree.html</a></p>
+<h2 id="1-6主成分分析"><a href="#1-6主成分分析" class="headerlink" title="1.6主成分分析"></a>1.6主成分分析</h2><p>主成分分析，是考察多个变量间相关性一种多元统计方法，研究如何通过少数几个主成分来揭示多个变量间的内部结构，即从原始变量中导出少数几个主成分，使它们尽可能多地保留原始变量的信息，且彼此间互不相关，作为新的综合指标。</p>
+<p>参考：</p>
+<p><a href="http://ufldl.stanford.edu/wiki/index.php/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90</a></p>
+<h1 id="2-特征重要性评估"><a href="#2-特征重要性评估" class="headerlink" title="2. 特征重要性评估"></a>2. 特征重要性评估</h1><p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-19.png" alt="importance of features"><br></div></p>
+<h2 id="2-1线性模型特征重要性"><a href="#2-1线性模型特征重要性" class="headerlink" title="2.1线性模型特征重要性"></a>2.1线性模型特征重要性</h2><p>使用LR等线性模型，先做一次预训练，根据特征对应的线性模型权值的绝对值大小来对特征的重要程度进行排序。</p>
+<h2 id="2-2-GBDT特征重要性"><a href="#2-2-GBDT特征重要性" class="headerlink" title="2.2 GBDT特征重要性"></a>2.2 GBDT特征重要性</h2><p>计算梯度渐进决策树(GBDT)特征重要性。</p>
+<h3 id="2-2-1-GBDT特征的重要性评估"><a href="#2-2-1-GBDT特征的重要性评估" class="headerlink" title="2.2.1 GBDT特征的重要性评估"></a>2.2.1 GBDT特征的重要性评估</h3><p>特征j的全局重要度通过特征j在单颗树中的重要度的平均值来衡量：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-20.png" alt=""><br></div><br>其中，M是树的数量。特征j在单颗树中的重要度如下：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-21.png" alt=""><br></div><br>其中，L为树的叶子节点数量，L−1即为树的非叶子节点数量（构建的树都是具有左右孩子的二叉树）. v_t是和节点t相关的特征，i_t^2是节点t分裂之后平方损失的减少值。</p>
+<p>为了更好的理解特征重要度的计算方法，下面给出scikit-learn工具包中的实现，代码移除了一些不相关的部分。</p>
+<h3 id="2-2-2-实现代码片段"><a href="#2-2-2-实现代码片段" class="headerlink" title="2.2.2 实现代码片段"></a>2.2.2 实现代码片段</h3><p>下面的代码来自于GradientBoostingClassifier对象的feature_importances属性的计算方法：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-22.png" alt="code 1"><br></div><br>其中，self.estimators_是算法构建出的决策树的数组，tree.feature<em>importances</em>是单棵树的特征重要度向量，其计算方法如下：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-23.png" alt="code 2"><br></div><br>上面的代码经过了简化，保留了核心思想。<strong>计算所有的非叶子节点在分裂时加权不纯度的减少，减少得越多说明特征越重要。</strong></p>
+<p>不纯度的减少实际上就是该节点此次分裂的收益，因此我们也可以这样理解，节点分裂时收益越大，该节点对应的特征的重要度越高。关于收益的定义请参考博文《GBDT算法原理深入解析》中的等式(9)的定义。</p>
+<h2 id="2-3-随机森林特征重要性"><a href="#2-3-随机森林特征重要性" class="headerlink" title="2.3 随机森林特征重要性"></a>2.3 随机森林特征重要性</h2><p>使用原始数据和随机森林模型，计算特征重要性。</p>
+<h3 id="2-3-1-特征重要性度量"><a href="#2-3-1-特征重要性度量" class="headerlink" title="2.3.1 特征重要性度量"></a>2.3.1 特征重要性度量</h3><p>计算某个特征X的重要性时，具体步骤如下：</p>
+<blockquote>
+<p>1）对每一颗决策树，选择相应的袋外数据（out of bag，OOB）​计算袋外数据误差，记为errOOB1.</p>
+</blockquote>
+<p>所谓袋外数据是指，每次建立决策树时，通过重复抽样得到一个数据用于训练​决策树，这时还有大约1/3的数据没有被利用，没有参与决策树的建立。这部分数据可以用于对决策树的性能进行评估，计算模型的预测错误率，称为袋外数据误差。</p>
+<p>这已经经过证明是无偏估计的,所以在随机森林算法中不需要再进行交叉验证或者单独的测试集来获取测试集误差的无偏估计。</p>
+<blockquote>
+<p>2）随机对袋外数据OOB所有样本的特征X加入噪声干扰（可以随机改变样本在特征X处的值），再次计算袋外数据误差，记为errOOB2。</p>
+<p>3）假设森林中有N棵树，则特征X的重要性=∑（errOOB2-errOOB1）/N。这个数值之所以能够说明特征的重要性是因为，如果加入随机噪声后，袋外数据准确率大幅度下降（即errOOB2上升），说明这个特征对于样本的预测结果有很大影响，进而说明重要程度比较高。</p>
+</blockquote>
+<h3 id="2-3-2特征选择"><a href="#2-3-2特征选择" class="headerlink" title="2.3.2特征选择"></a>2.3.2特征选择</h3><p>在特征重要性的基础上，特征选择的步骤如下：</p>
+<blockquote>
+<p>1）计算每个特征的重要性，并按降序排序</p>
+<p>2）确定要剔除的比例，依据特征重要性剔除相应比例的特征，得到一个新的特征集</p>
+<p>3）用新的特征集重复上述过程，直到剩下m个特征（m为提前设定的值）。</p>
+<p>4）根据上述过程中得到的各个特征集和特征集对应的袋外误差率，选择袋外误差率最低的特征集。</p>
+</blockquote>
+<h1 id="3-特征选择"><a href="#3-特征选择" class="headerlink" title="3. 特征选择"></a>3. 特征选择</h1><p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-24.png" alt="feature selection"><br></div><br>当数据预处理完成后，我们需要选择有意义的特征输入机器学习的算法和模型进行训练。通常来说，从两个方面考虑来选择特征：</p>
+<blockquote>
+<p>● 特征是否发散：如果一个特征不发散，例如方差接近于0，也就是说样本在这个特征上基本上没有差异，这个特征对于样本的区分并没有什么用。</p>
+<p>● 特征与目标的相关性：这点比较显见，与目标相关性高的特征，应当优选选择。除方差法外，本文介绍的其他方法均从相关性考虑。</p>
+</blockquote>
+<p>根据特征选择的形式又可以将特征选择方法分为3种：</p>
+<blockquote>
+<p>● Filter：过滤法，按照发散性或者相关性对各个特征进行评分，设定阈值或者待选择阈值的个数，选择特征。</p>
+<p>● Wrapper：包装法，根据目标函数（通常是预测效果评分），每次选择若干特征，或者排除若干特征。</p>
+<p>● Embedded：嵌入法，先使用某些机器学习的算法和模型进行训练，得到各个特征的权值系数，根据系数从大到小选择特征。类似于Filter方法，但是是通过训练来确定特征的优劣。</p>
+</blockquote>
+<p>可以使用python扩展包sklearn中的feature_selection库来进行特征选择。</p>
+<h2 id="3-1过滤式特征选择"><a href="#3-1过滤式特征选择" class="headerlink" title="3.1过滤式特征选择"></a>3.1过滤式特征选择</h2><p>假设特征之间相互独立，不存在交互，那么可以使用卡方检验、信息增益、互信息等方法逐个检验每个特征与结果之间的相关程度。</p>
+<h3 id="3-1-1方差选择法"><a href="#3-1-1方差选择法" class="headerlink" title="3.1.1方差选择法"></a>3.1.1方差选择法</h3><p>使用方差选择法，先要计算各个特征的方差，然后根据阈值，选择方差大于阈值的特征。</p>
+<h3 id="3-1-2相关系数法"><a href="#3-1-2相关系数法" class="headerlink" title="3.1.2相关系数法"></a>3.1.2相关系数法</h3><p>相关系数是用以反映变量之间相关关系密切程度的统计指标，例如皮尔逊相关系数。使用相关系数法时，首先要计算各个特征对目标值的相关系数以及相关系数的P值。</p>
+<p>皮尔逊相关系数是一种最简单的，能帮助理解特征和相应变量之间关系的方法，该方法衡量的是变量之间的线性相关性，结果的取值区间为[-1，1]，-1表示完全的负相关(这个变量下降，那个就会上升)，+1表示完全的正相关，0表示没有线性相关。</p>
+<p>皮尔逊相关系数的公式如下：</p>
+<p><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-25.png" alt="pearson correlation coefficient"><br></div><br>由公式可知，Pearson相关系数是用协方差除以两个变量的标准差得到的。其实皮尔逊系数就是计算cos相似度之前两个向量首先进行标准化。</p>
+<h3 id="3-1-3-卡方检验"><a href="#3-1-3-卡方检验" class="headerlink" title="3.1.3 卡方检验"></a>3.1.3 卡方检验</h3><p>参考：blog.csdn.net/idatamining/article/details/8564981</p>
+<h3 id="3-1-4-互信息"><a href="#3-1-4-互信息" class="headerlink" title="3.1.4 互信息"></a>3.1.4 互信息</h3><p>参考：</p>
+<p><a href="http://www.cnblogs.com/gatherstars/p/6004075.html" target="_blank" rel="external">http://www.cnblogs.com/gatherstars/p/6004075.html</a></p>
+<p><a href="http://blog.csdn.net/yihucha166/article/details/50646615" target="_blank" rel="external">http://blog.csdn.net/yihucha166/article/details/50646615</a></p>
+<h2 id="3-2-包装式特征选择"><a href="#3-2-包装式特征选择" class="headerlink" title="3.2 包装式特征选择"></a>3.2 包装式特征选择</h2><p>包装式特征选择根据<strong>目标函数（通常是预测效果评分）</strong>，每次选择若干特征，或者排除若干特征。这类方法的<strong>核心思想在于</strong>，给定了某种模型，及预测效果评价的方法，然后针对特征空间中的不同子集，计算每个子集的预测效果，效果最好的，即作为最终被挑选出来的特征子集。注意集合的子集是一个指数的量级，故此类方法计算量较大。故而针对如何高效搜索特征空间子集，就产生了不同的算法。其中有一种简单有效的方法叫贪婪搜索策略，包括前向选择与后向删除。在前向选择方法中，初始化一个空的特征集合，逐步向其中添加新的特征，如果该特征能提高预测效果，即得以保留，否则就扔掉。后向删除即是说从所有特征构成的集合开始，逐步删除特征，只要删除后模型预测效果提升，即说明删除动作有效，否则就还是保留原特征。要注意到，<strong>包装式方法要求针对每一个特征子集重新训练模型，因此计算量还是较大的。</strong></p>
+<p>通常，<strong>将过滤式方法的高效与包裹式方法的高准确率进行结合，可得到更优的特征子集</strong>。混合特征选择过程一般由两个阶段组成：</p>
+<blockquote>
+<p>1）使用Filter方法初步剔除大部分无关或噪声特征,只保留少量特征,从而有效地减小后续搜索过程的规模。</p>
+<p>2）将剩余的特征连同样本数据作为输入参数传递给Wrapper选择方法,以进一步优化选择重要的特征。</p>
+</blockquote>
+<p>优点：准确率高。</p>
+<p>缺点：为选择出性能最好的特征子集，Wrapper算法需要的计算量巨大；该方法所选择的特征子集依赖于具体学习机；容易产生“过拟合”问题，推广性能较差。</p>
+<p><strong>递归消除特征法使用一个基模型来进行多轮训练，每轮训练后，消除若干权值系数的特征，再基于新的特征集进行下一轮训练。</strong></p>
+<p>递归特征消除的主要思想是反复的构建模型（如SVM或者回归模型）然后选出最好的（或者最差的）的特征（可以根据系数来选），把选出来的特征放到一边，然后在剩余的特征上重复这个过程，直到所有特征都遍历了。<strong>这个过程中特征被消除的次序就是特征的排序</strong>。因此，这是一种寻找最优特征子集的贪心算法。</p>
+<p>RFE的稳定性很大程度上取决于在迭代的时候底层用哪种模型。例如，假如RFE采用的普通的回归，没有经过正则化的回归是不稳定的，那么RFE就是不稳定的；假如采用的是Ridge(带平方正则化项)，而用Ridge正则化的回归是稳定的，那么RFE就是稳定的。</p>
+<p>参考：www.cnblogs.com/nolonely/p/6435083.html</p>
+<h2 id="3-3-嵌入式特征选择"><a href="#3-3-嵌入式特征选择" class="headerlink" title="3.3 嵌入式特征选择"></a>3.3 嵌入式特征选择</h2><h3 id="3-3-1-使用L1正则选择特征"><a href="#3-3-1-使用L1正则选择特征" class="headerlink" title="3.3.1 使用L1正则选择特征"></a>3.3.1 使用L1正则选择特征</h3><p>L1和L2正则</p>
+<p><a href="http://blog.csdn.net/jinping_shi/article/details/52433975" target="_blank" rel="external">http://blog.csdn.net/jinping_shi/article/details/52433975</a></p>
+<p><a href="http://blog.csdn.net/qq_34531825/article/details/52689654" target="_blank" rel="external">http://blog.csdn.net/qq_34531825/article/details/52689654</a></p>
+<h3 id="3-3-2-使用树模型选择特征"><a href="#3-3-2-使用树模型选择特征" class="headerlink" title="3.3.2 使用树模型选择特征"></a>3.3.2 使用树模型选择特征</h3><p>使用第2章的GBDT特征重要性评估和随机森林特征重要性评估，选出重要特征。</p>
+<h1 id="4-特征生成"><a href="#4-特征生成" class="headerlink" title="4. 特征生成"></a>4. 特征生成</h1><p>通过GBDT编码成线性特征。</p>
+<p>参考： </p>
+<p><a href="http://www.cbdio.com/BigData/2015-08/27/content_3750170.htm" target="_blank" rel="external">http://www.cbdio.com/BigData/2015-08/27/content_3750170.htm</a></p>
+<p><a href="http://blog.csdn.net/shine19930820/article/details/71713680" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/71713680</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>Rewards</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">As you wish</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/bruceBlog.github.io/2017/06/29/Feature-Engineering/">Feature Engineering</a></p>
+        <p><span>文章作者:</span><a href="/bruceBlog.github.io/" title="访问 Bruce J 的个人博客">Bruce J</a></p>
+        <p><span>发布时间:</span>2017年06月29日 - 22时11分</p>
+        <p><span>最后更新:</span>2017年06月29日 - 23时06分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/bruceBlog.github.io/2017/06/29/Feature-Engineering/" title="Feature Engineering">https://jimmy1357.github.io/bruceBlog.github.io/2017/06/29/Feature-Engineering/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://jimmy1357.github.io/bruceBlog.github.io/2017/06/29/Feature-Engineering/　　作者: Bruce J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/bruceBlog.github.io/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/bruceBlog.github.io/2017/06/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#特征变换"><span class="toc-number">1.</span> <span class="toc-text">特征变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-特征尺度变换"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 特征尺度变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-特征异常平滑"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 特征异常平滑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3异常检测模块"><span class="toc-number">1.3.</span> <span class="toc-text">1.3异常检测模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-One-hot编码"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 One-hot编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-特征离散"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 特征离散</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6主成分分析"><span class="toc-number">1.6.</span> <span class="toc-text">1.6主成分分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-特征重要性评估"><span class="toc-number">2.</span> <span class="toc-text">2. 特征重要性评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1线性模型特征重要性"><span class="toc-number">2.1.</span> <span class="toc-text">2.1线性模型特征重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-GBDT特征重要性"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 GBDT特征重要性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-GBDT特征的重要性评估"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 GBDT特征的重要性评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-实现代码片段"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 实现代码片段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-随机森林特征重要性"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 随机森林特征重要性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-特征重要性度量"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 特征重要性度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2特征选择"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2特征选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-特征选择"><span class="toc-number">3.</span> <span class="toc-text">3. 特征选择</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1过滤式特征选择"><span class="toc-number">3.1.</span> <span class="toc-text">3.1过滤式特征选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1方差选择法"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1方差选择法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2相关系数法"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2相关系数法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-卡方检验"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3 卡方检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4-互信息"><span class="toc-number">3.1.4.</span> <span class="toc-text">3.1.4 互信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-包装式特征选择"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 包装式特征选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-嵌入式特征选择"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 嵌入式特征选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-使用L1正则选择特征"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.3.1 使用L1正则选择特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-使用树模型选择特征"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.3.2 使用树模型选择特征</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-特征生成"><span class="toc-number">4.</span> <span class="toc-text">4. 特征生成</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/bruceBlog.github.io/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/bruceBlog.github.io/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'bruce',
+      repo: 'jimmy1357.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/bruceBlog.github.io/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/bruceBlog.github.io/2017/06/17/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/bruceBlog.github.io/2017/06/29/Feature-Engineering/">Feature Engineering</a></li><li class="post-list-item"><a class="post-list-link" href="/bruceBlog.github.io/2017/06/17/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/bruceBlog.github.io/2017/06/17/Hexo-Admin-插件错误小结/">Errors when using Hexo Admin </a></li><li class="post-list-item"><a class="post-list-link" href="/bruceBlog.github.io/2017/06/16/Just-for-fun/">Just for fun</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 Bruce J
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >一笑回眸: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">擦肩而过: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/bruceBlog.github.io/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/bruceBlog.github.io/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
