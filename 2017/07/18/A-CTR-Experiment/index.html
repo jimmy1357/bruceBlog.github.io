@@ -6,6 +6,7 @@
   <title>A CTR Experiment | July7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
+<meta name="keywords" content="CTR,Feature Engineering">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A CTR Experiment">
 <meta property="og:url" content="https://jimmy1357.github.io/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/index.html">
@@ -20,7 +21,7 @@
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-32.png">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-33.png">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-34.png">
-<meta property="og:updated_time" content="2017-07-18T14:22:53.873Z">
+<meta property="og:updated_time" content="2017-07-18T14:27:03.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A CTR Experiment">
 <meta name="twitter:description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
@@ -150,7 +151,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/bruceBlog.github.io/tags/Feature-Engineering/" style="font-size: 10px;">Feature Engineering</a> <a href="/bruceBlog.github.io/tags/hexo/" style="font-size: 20px;">hexo</a>
+                        <a href="/bruceBlog.github.io/tags/CTR/" style="font-size: 10px;">CTR</a> <a href="/bruceBlog.github.io/tags/Feature-Engineering/" style="font-size: 20px;">Feature Engineering</a> <a href="/bruceBlog.github.io/tags/hexo/" style="font-size: 20px;">hexo</a>
                     </div>
                 </section>
                 
@@ -227,7 +228,7 @@
   
     <div class="article-meta">
       <a href="/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/" class="article-date">
-      <time datetime="2017-07-18T13:46:02.000Z" itemprop="datePublished">2017-07-18</time>
+      <time datetime="2017-07-18T13:46:00.000Z" itemprop="datePublished">2017-07-18</time>
 </a>
     </div>
   
@@ -248,8 +249,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/bruceBlog.github.io/categories/Machine-Learning/">Machine Learning</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/bruceBlog.github.io/tags/CTR/">CTR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/bruceBlog.github.io/tags/Feature-Engineering/">Feature Engineering</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -372,7 +381,7 @@
         <p><span>本文标题:</span><a href="/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/">A CTR Experiment</a></p>
         <p><span>文章作者:</span><a href="/bruceBlog.github.io/" title="访问 Bruce J 的个人博客">Bruce J</a></p>
         <p><span>发布时间:</span>2017年07月18日 - 21时46分</p>
-        <p><span>最后更新:</span>2017年07月18日 - 22时22分</p>
+        <p><span>最后更新:</span>2017年07月18日 - 22时27分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/" title="A CTR Experiment">https://jimmy1357.github.io/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jimmy1357.github.io/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/　　作者: Bruce J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
