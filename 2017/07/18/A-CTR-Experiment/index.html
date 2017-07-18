@@ -5,12 +5,12 @@
   
   <title>A CTR Experiment | July7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行 读">
+  <meta name="description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A CTR Experiment">
 <meta property="og:url" content="https://jimmy1357.github.io/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/index.html">
 <meta property="og:site_name" content="July7">
-<meta property="og:description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行 读">
+<meta property="og:description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-26.png">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-27.png">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-28.png">
@@ -20,10 +20,10 @@
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-32.png">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-33.png">
 <meta property="og:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-34.png">
-<meta property="og:updated_time" content="2017-07-18T14:20:24.686Z">
+<meta property="og:updated_time" content="2017-07-18T14:22:53.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A CTR Experiment">
-<meta name="twitter:description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行 读">
+<meta name="twitter:description" content="0. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
 <meta name="twitter:image" content="https://jimmy1357.github.io/bruceBlog.github.io/images/pasted-26.png">
   
     <link rel="alternative" href="/atom.xml" title="July7" type="application/atom+xml">
@@ -262,6 +262,7 @@
 
 <p>构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。</p>
 <p>tips：shell code<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -n “2,5p“ filename 读取第2到第5行</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>读取数据：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">train_df=pd.read_csv(<span class="string">'../data/train.csv'</span>,nrows=<span class="number">10000000</span>)</div><div class="line"></div><div class="line">test_df=pd.read_csv(<span class="string">'../data/test_fromtrain.csv'</span>)</div><div class="line"></div><div class="line"><span class="comment">#down sampling</span></div><div class="line"></div><div class="line">temp_0=train_df.click==<span class="number">0</span></div><div class="line"></div><div class="line">data_0=train_df[temp_0]</div><div class="line"></div><div class="line">temp_1=train_df.click==<span class="number">1</span></div><div class="line"></div><div class="line">data_1=train_df[temp_1]</div><div class="line"></div><div class="line">data_0_ed=data_0[<span class="number">0</span>:len(data_1)]</div><div class="line"></div><div class="line">data_downsampled=pd.concat([data_1,data_0_ed])</div><div class="line"></div><div class="line"><span class="comment">#打乱数据</span></div><div class="line"></div><div class="line">data_downsampled=data_downsampled.sample(frac=<span class="number">1</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"></div><div class="line">gbdt = GradientBoostingClassifier()</div><div class="line"></div><div class="line">y = data_downsampled.click <span class="comment">#构造y，y为click列</span></div><div class="line"></div><div class="line">a = list(range(data_downsampled.shape[<span class="number">1</span>]))</div><div class="line"></div><div class="line"><span class="keyword">del</span> a[<span class="number">1</span>]</div><div class="line"></div><div class="line">X=data_downsampled[a] <span class="comment">#构造X，X为除了click列以外的其他列</span></div></pre></td></tr></table></figure></p>
 <h1 id="1-Feature-Processing"><a href="#1-Feature-Processing" class="headerlink" title="1. Feature Processing"></a>1. Feature Processing</h1><h2 id="1-1-Feature-Selection"><a href="#1-1-Feature-Selection" class="headerlink" title="1.1 Feature Selection"></a>1.1 Feature Selection</h2><p>观察特征如下：</p>
 <div align="center"><br><img src="/bruceBlog.github.io/images/pasted-27.png" alt="方框中的特征无法直接处理"><br></div>
@@ -276,12 +277,9 @@
 <p>为了暂时规避内存不足的问题，我们人为的筛选几个特征，重新构造数据，排除掉原数据中的部分ID特征。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">X = X[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>]]</div><div class="line"></div><div class="line">X = pd.get_dummies(X)</div></pre></td></tr></table></figure></p>
 <p>再执行X.dtypes，即可看到X重新编码以后的效果</p>
 <p>将X的数值型特征，查看其统计特征：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]].describe()</div></pre></td></tr></table></figure></p>
-<p><img src="/bruceBlog.github.io/images/pasted-30.png" alt=""></p>
-<p>注意到，C20特征有一半以上的-1值。暂时不做处理。</p>
-<p>训练GBDT模型，进行特征筛选：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">gbdt</span><span class="selector-class">.fit</span>(<span class="selector-tag">X</span>, <span class="selector-tag">y</span>)</div></pre></td></tr></table></figure></p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-31.png" alt="大约耗费了一杯咖啡的时间"><br></div>
+<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-30.png" alt=""><br></div><br>注意到，C20特征有一半以上的-1值。暂时不做处理。<br><br>训练GBDT模型，进行特征筛选：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">gbdt</span><span class="selector-class">.fit</span>(<span class="selector-tag">X</span>, <span class="selector-tag">y</span>)</div></pre></td></tr></table></figure><br><br><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-31.png" alt="大约耗费了一杯咖啡的时间"><br></div>
 
-<p>据此选取重要特征(如下图中<strong><em>非0</em></strong>的特征)</p>
+<p>据此选取重要特征(如下图中<strong>非0</strong>的特征)</p>
 <div align="center"><br><img src="/bruceBlog.github.io/images/pasted-32.png" alt=""><br></div>
 
 <p>对测试数据进行相同的预处理操作<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">test_labels=test_df.click</div><div class="line"></div><div class="line">test_df=test_df[a]</div><div class="line"></div><div class="line">test_data = test_df[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>]]</div><div class="line"></div><div class="line">test_data = pd.get_dummies(test_data)</div></pre></td></tr></table></figure></p>
@@ -374,7 +372,7 @@
         <p><span>本文标题:</span><a href="/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/">A CTR Experiment</a></p>
         <p><span>文章作者:</span><a href="/bruceBlog.github.io/" title="访问 Bruce J 的个人博客">Bruce J</a></p>
         <p><span>发布时间:</span>2017年07月18日 - 21时46分</p>
-        <p><span>最后更新:</span>2017年07月18日 - 22时20分</p>
+        <p><span>最后更新:</span>2017年07月18日 - 22时22分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/" title="A CTR Experiment">https://jimmy1357.github.io/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jimmy1357.github.io/bruceBlog.github.io/2017/07/18/A-CTR-Experiment/　　作者: Bruce J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
