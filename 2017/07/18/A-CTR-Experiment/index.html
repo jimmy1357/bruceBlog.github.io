@@ -13,15 +13,15 @@
 <meta property="og:site_name" content="July7">
 <meta property="og:description" content="1. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
 <meta property="og:image" content="http://www.july7.me/images/pasted-26.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-27.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-28.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-29.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-30.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-31.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-32.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-33.png">
-<meta property="og:image" content="http://www.july7.me/bruceBlog.github.io/images/pasted-34.png">
-<meta property="og:updated_time" content="2017-07-26T14:01:12.005Z">
+<meta property="og:image" content="http://www.july7.me/images/pasted-27.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-28.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-29.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-30.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-31.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-32.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-33.png">
+<meta property="og:image" content="http://www.july7.me/images/pasted-34.png">
+<meta property="og:updated_time" content="2017-07-26T14:09:09.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A CTR Prediction Experiment">
 <meta name="twitter:description" content="1. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
@@ -274,22 +274,22 @@
 <a id="more"></a>
 <p>读取数据：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">train_df=pd.read_csv(<span class="string">'../data/train.csv'</span>,nrows=<span class="number">10000000</span>)</div><div class="line"></div><div class="line">test_df=pd.read_csv(<span class="string">'../data/test_fromtrain.csv'</span>)</div><div class="line"></div><div class="line"><span class="comment">#down sampling</span></div><div class="line"></div><div class="line">temp_0=train_df.click==<span class="number">0</span></div><div class="line"></div><div class="line">data_0=train_df[temp_0]</div><div class="line"></div><div class="line">temp_1=train_df.click==<span class="number">1</span></div><div class="line"></div><div class="line">data_1=train_df[temp_1]</div><div class="line"></div><div class="line">data_0_ed=data_0[<span class="number">0</span>:len(data_1)]</div><div class="line"></div><div class="line">data_downsampled=pd.concat([data_1,data_0_ed])</div><div class="line"></div><div class="line"><span class="comment">#打乱数据</span></div><div class="line"></div><div class="line">data_downsampled=data_downsampled.sample(frac=<span class="number">1</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"></div><div class="line">gbdt = GradientBoostingClassifier()</div><div class="line"></div><div class="line">y = data_downsampled.click <span class="comment">#构造y，y为click列</span></div><div class="line"></div><div class="line">a = list(range(data_downsampled.shape[<span class="number">1</span>]))</div><div class="line"></div><div class="line"><span class="keyword">del</span> a[<span class="number">1</span>]</div><div class="line"></div><div class="line">X=data_downsampled[a] <span class="comment">#构造X，X为除了click列以外的其他列</span></div></pre></td></tr></table></figure></p>
 <h1 id="2-Feature-Processing"><a href="#2-Feature-Processing" class="headerlink" title="2. Feature Processing"></a>2. Feature Processing</h1><h2 id="2-1-Feature-Selection"><a href="#2-1-Feature-Selection" class="headerlink" title="2.1 Feature Selection"></a>2.1 Feature Selection</h2><p>观察特征如下：</p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-27.png" alt="方框中的特征无法直接处理"><br></div>
+<div align="center"><br><img src="/images/pasted-27.png" alt="方框中的特征无法直接处理"><br></div>
 
 <p>针对这些特征，我们首先要对其进行<strong>特征编码</strong>（对于无序的类别特征，使用One-hot编码）</p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-28.png" alt="object为非数值型特征(String)"><br></div>
+<div align="center"><br><img src="/images/pasted-28.png" alt="object为非数值型特征(String)"><br></div>
 
 <p>观察两个特征的统计特征：</p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-29.png" alt="统计特征"><br></div>
+<div align="center"><br><img src="/images/pasted-29.png" alt="统计特征"><br></div>
 
 <p>Using the get_dummies will create a new column for every unique string in a certain column: 使用get_dummies进行one-hot编码<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#注意这里可能会报内存不足的错误</span></div><div class="line"></div><div class="line"><span class="attr">X</span> = pd.get_dummies(X)</div></pre></td></tr></table></figure></p>
 <p>为了暂时规避内存不足的问题，我们人为的筛选几个特征，重新构造数据，排除掉原数据中的部分ID特征。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">X = X[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>]]</div><div class="line"></div><div class="line">X = pd.get_dummies(X)</div></pre></td></tr></table></figure></p>
 <p>再执行X.dtypes，即可看到X重新编码以后的效果</p>
 <p>将X的数值型特征，查看其统计特征：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]].describe()</div></pre></td></tr></table></figure></p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-30.png" alt=""><br></div><br>注意到，C20特征有一半以上的-1值。暂时不做处理。<br><br>训练GBDT模型，进行特征筛选：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">gbdt</span><span class="selector-class">.fit</span>(<span class="selector-tag">X</span>, <span class="selector-tag">y</span>)</div></pre></td></tr></table></figure><br><br><div align="center"><br><img src="/bruceBlog.github.io/images/pasted-31.png" alt="大约耗费了一杯咖啡的时间"><br></div>
+<div align="center"><br><img src="/images/pasted-30.png" alt=""><br></div><br>注意到，C20特征有一半以上的-1值。暂时不做处理。<br><br>训练GBDT模型，进行特征筛选：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">gbdt</span><span class="selector-class">.fit</span>(<span class="selector-tag">X</span>, <span class="selector-tag">y</span>)</div></pre></td></tr></table></figure><br><br><div align="center"><br><img src="/images/pasted-31.png" alt="大约耗费了一杯咖啡的时间"><br></div>
 
 <p>据此选取重要特征(如下图中<strong>非0</strong>的特征)</p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-32.png" alt=""><br></div>
+<div align="center"><br><img src="/images/pasted-32.png" alt=""><br></div>
 
 <p>对测试数据进行相同的预处理操作<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">test_labels=test_df.click</div><div class="line"></div><div class="line">test_df=test_df[a]</div><div class="line"></div><div class="line">test_data = test_df[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>]]</div><div class="line"></div><div class="line">test_data = pd.get_dummies(test_data)</div></pre></td></tr></table></figure></p>
 <p>看一下GBDT的分类效果：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">gbdt_predict_labels</span> = gbdt.predict(test_data)</div></pre></td></tr></table></figure></p>
@@ -303,9 +303,9 @@
 <p>解决方法比较草率：</p>
 <p>如果训练集中没有测试集中的列，则将测试集中的列删除；</p>
 <p>如果测试集中没有训练集中的列，则将缺失的列补上并且填充一个0</p>
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-33.png" alt=""><br></div>
+<div align="center"><br><img src="/images/pasted-33.png" alt=""><br></div>
 
-<div align="center"><br><img src="/bruceBlog.github.io/images/pasted-34.png" alt=""><br></div>
+<div align="center"><br><img src="/images/pasted-34.png" alt=""><br></div>
 
 <p>测试集中多 app_category_f395a87f  app_category_6fea3693 app_category_0d82db25 site_category_a72a0145</p>
 <p>测试集中缺 app_category_86c1a5a3  app_category_0bfbc358 site_category_110ab22d</p>
@@ -381,7 +381,7 @@
         <p><span>本文标题:</span><a href="/2017/07/18/A-CTR-Experiment/">A CTR Prediction Experiment</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Bruce J 的个人博客">Bruce J</a></p>
         <p><span>发布时间:</span>2017年07月18日 - 21时46分</p>
-        <p><span>最后更新:</span>2017年07月26日 - 22时01分</p>
+        <p><span>最后更新:</span>2017年07月26日 - 22时09分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/07/18/A-CTR-Experiment/" title="A CTR Prediction Experiment">http://www.july7.me/2017/07/18/A-CTR-Experiment/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.july7.me/2017/07/18/A-CTR-Experiment/　　作者: Bruce J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
