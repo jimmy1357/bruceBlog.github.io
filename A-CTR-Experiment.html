@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>A CTR Prediction Experiment | July7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
+<meta name="keywords" content="CTR,Feature Engineering">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A CTR Prediction Experiment">
+<meta property="og:url" content="http://july7.me/A-CTR-Experiment.html">
+<meta property="og:site_name" content="July7">
+<meta property="og:description" content="1. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
+<meta property="og:image" content="http://july7.me/images/pasted-26.png">
+<meta property="og:image" content="http://july7.me/images/pasted-27.png">
+<meta property="og:image" content="http://july7.me/images/pasted-28.png">
+<meta property="og:image" content="http://july7.me/images/pasted-29.png">
+<meta property="og:image" content="http://july7.me/images/pasted-30.png">
+<meta property="og:image" content="http://july7.me/images/pasted-31.png">
+<meta property="og:image" content="http://july7.me/images/pasted-32.png">
+<meta property="og:image" content="http://july7.me/images/pasted-33.png">
+<meta property="og:image" content="http://july7.me/images/pasted-34.png">
+<meta property="og:updated_time" content="2017-07-26T14:09:09.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A CTR Prediction Experiment">
+<meta name="twitter:description" content="1. Preparing Data数据取自kaggle的CTR竞赛: http://www.kaggle.com/c/avazu-ctr-prediction/data   构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。 tips：shell code1sed -n “2,5p“ filename 读取第2到第5行">
+<meta name="twitter:image" content="http://july7.me/images/pasted-26.png">
+  
+    <link rel="alternative" href="/atom.xml" title="July7" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Bruce J</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">The very beginning mind itself is the most accomplished mind of true enlightenment.</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Links</li>
+                        
+                        
+                        <li>About</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">Home</a></li>
+                        
+                            <li><a href="/works">Works</a></li>
+                        
+                            <li><a href="/Essays">Essays</a></li>
+                        
+                            <li><a href="/about">About</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1efi4_Pt5_Tl4JWkpPu2urg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/july7cji" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/CTR/" style="font-size: 10px;">CTR</a> <a href="/tags/Feature-Engineering/" style="font-size: 20px;">Feature Engineering</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jimmy1357.github.io/bruceBlog.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">旅行 拍照 音乐 足球 向往自由的伪文艺青年</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Bruce J</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Bruce J</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">The very beginning mind itself is the most accomplished mind of true enlightenment.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">Home</a></li>
+                
+                    <li><a href="/works">Works</a></li>
+                
+                    <li><a href="/Essays">Essays</a></li>
+                
+                    <li><a href="/about">About</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1efi4_Pt5_Tl4JWkpPu2urg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/july7cji" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-A-CTR-Experiment" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/A-CTR-Experiment.html" class="article-date">
+      <time datetime="2017-07-18T13:46:00.000Z" itemprop="datePublished">2017-07-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      A CTR Prediction Experiment
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTR/">CTR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Feature-Engineering/">Feature Engineering</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="1-Preparing-Data"><a href="#1-Preparing-Data" class="headerlink" title="1. Preparing Data"></a>1. Preparing Data</h1><p>数据取自kaggle的CTR竞赛: <a href="http://www.kaggle.com/c/avazu-ctr-prediction/data" target="_blank" rel="external">http://www.kaggle.com/c/avazu-ctr-prediction/data</a></p>
+<div align="center"><br><img src="/images/pasted-26.png" alt="将数据解压转换为csv文件"><br></div>
+
+<p>构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。</p>
+<p>tips：shell code<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -n “2,5p“ filename 读取第2到第5行</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>读取数据：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">train_df=pd.read_csv(<span class="string">'../data/train.csv'</span>,nrows=<span class="number">10000000</span>)</div><div class="line"></div><div class="line">test_df=pd.read_csv(<span class="string">'../data/test_fromtrain.csv'</span>)</div><div class="line"></div><div class="line"><span class="comment">#down sampling</span></div><div class="line"></div><div class="line">temp_0=train_df.click==<span class="number">0</span></div><div class="line"></div><div class="line">data_0=train_df[temp_0]</div><div class="line"></div><div class="line">temp_1=train_df.click==<span class="number">1</span></div><div class="line"></div><div class="line">data_1=train_df[temp_1]</div><div class="line"></div><div class="line">data_0_ed=data_0[<span class="number">0</span>:len(data_1)]</div><div class="line"></div><div class="line">data_downsampled=pd.concat([data_1,data_0_ed])</div><div class="line"></div><div class="line"><span class="comment">#打乱数据</span></div><div class="line"></div><div class="line">data_downsampled=data_downsampled.sample(frac=<span class="number">1</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"></div><div class="line">gbdt = GradientBoostingClassifier()</div><div class="line"></div><div class="line">y = data_downsampled.click <span class="comment">#构造y，y为click列</span></div><div class="line"></div><div class="line">a = list(range(data_downsampled.shape[<span class="number">1</span>]))</div><div class="line"></div><div class="line"><span class="keyword">del</span> a[<span class="number">1</span>]</div><div class="line"></div><div class="line">X=data_downsampled[a] <span class="comment">#构造X，X为除了click列以外的其他列</span></div></pre></td></tr></table></figure></p>
+<h1 id="2-Feature-Processing"><a href="#2-Feature-Processing" class="headerlink" title="2. Feature Processing"></a>2. Feature Processing</h1><h2 id="2-1-Feature-Selection"><a href="#2-1-Feature-Selection" class="headerlink" title="2.1 Feature Selection"></a>2.1 Feature Selection</h2><p>观察特征如下：</p>
+<div align="center"><br><img src="/images/pasted-27.png" alt="方框中的特征无法直接处理"><br></div>
+
+<p>针对这些特征，我们首先要对其进行<strong>特征编码</strong>（对于无序的类别特征，使用One-hot编码）</p>
+<div align="center"><br><img src="/images/pasted-28.png" alt="object为非数值型特征(String)"><br></div>
+
+<p>观察两个特征的统计特征：</p>
+<div align="center"><br><img src="/images/pasted-29.png" alt="统计特征"><br></div>
+
+<p>Using the get_dummies will create a new column for every unique string in a certain column: 使用get_dummies进行one-hot编码<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#注意这里可能会报内存不足的错误</span></div><div class="line"></div><div class="line"><span class="attr">X</span> = pd.get_dummies(X)</div></pre></td></tr></table></figure></p>
+<p>为了暂时规避内存不足的问题，我们人为的筛选几个特征，重新构造数据，排除掉原数据中的部分ID特征。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">X = X[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>]]</div><div class="line"></div><div class="line">X = pd.get_dummies(X)</div></pre></td></tr></table></figure></p>
+<p>再执行X.dtypes，即可看到X重新编码以后的效果</p>
+<p>将X的数值型特征，查看其统计特征：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]].describe()</div></pre></td></tr></table></figure></p>
+<div align="center"><br><img src="/images/pasted-30.png" alt=""><br></div><br>注意到，C20特征有一半以上的-1值。暂时不做处理。<br><br>训练GBDT模型，进行特征筛选：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">gbdt</span><span class="selector-class">.fit</span>(<span class="selector-tag">X</span>, <span class="selector-tag">y</span>)</div></pre></td></tr></table></figure><br><br><div align="center"><br><img src="/images/pasted-31.png" alt="大约耗费了一杯咖啡的时间"><br></div>
+
+<p>据此选取重要特征(如下图中<strong>非0</strong>的特征)</p>
+<div align="center"><br><img src="/images/pasted-32.png" alt=""><br></div>
+
+<p>对测试数据进行相同的预处理操作<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">test_labels=test_df.click</div><div class="line"></div><div class="line">test_df=test_df[a]</div><div class="line"></div><div class="line">test_data = test_df[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>]]</div><div class="line"></div><div class="line">test_data = pd.get_dummies(test_data)</div></pre></td></tr></table></figure></p>
+<p>看一下GBDT的分类效果：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">gbdt_predict_labels</span> = gbdt.predict(test_data)</div></pre></td></tr></table></figure></p>
+<p>执行上述代码，报错：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ValueError: Number of features of the model must <span class="keyword">match</span> the <span class="built_in">input</span>. Model n_features <span class="keyword">is</span> <span class="number">62</span> <span class="built_in">and</span> <span class="built_in">input</span> n_features <span class="keyword">is</span> <span class="number">63</span></div></pre></td></tr></table></figure></p>
+<p>看起来是one-hot编码后，测试数据维数与训练数据不符。</p>
+<p>回想之前的处理方式，将测试集直接进行one-hot编码，如果测试集中出现了和训练集不同的分类，怎么办？</p>
+<p>因此，需要：</p>
+<p><strong><em>保证测试数据和训练数据在site_category和app_category两列上的类别一致，才能保证接下来的one-hot编码有效。</em></strong></p>
+<p>因此，需要对测试数据进行特征异常值平滑。</p>
+<p>参考：<a href="http://blog.csdn.net/hshuihui/article/details/53258111" target="_blank" rel="external">训练集列数和测试集列数不同怎么办？</a></p>
+<p>解决方法比较草率：</p>
+<p>如果训练集中没有测试集中的列，则将测试集中的列删除；</p>
+<p>如果测试集中没有训练集中的列，则将缺失的列补上并且填充一个0</p>
+<div align="center"><br><img src="/images/pasted-33.png" alt=""><br></div>
+
+<div align="center"><br><img src="/images/pasted-34.png" alt=""><br></div>
+
+<p>测试集中多 app_category_f395a87f  app_category_6fea3693 app_category_0d82db25 site_category_a72a0145</p>
+<p>测试集中缺 app_category_86c1a5a3  app_category_0bfbc358 site_category_110ab22d</p>
+<p>使用如下代码，修正测试集的列。(ix表示，既可以通过下标索引，也可以通过列名索引)<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span><span class="type">_test_data</span> = test_data.ix[:<span class="type"></span>,X.columns].fillna(<span class="number">0</span>)</div></pre></td></tr></table></figure></p>
+<p>重新对测试集数据，使用训练好的gbdt模型，进行分类<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gbdt_predict_labels = gbdt.predict(<span class="keyword">new</span><span class="type">_test_data</span>)</div></pre></td></tr></table></figure></p>
+<p>计算准确分类的测试集数据个数：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">sum</span><span class="params">(gbdt_predict_labels==test_labels)</span></span></div></pre></td></tr></table></figure></p>
+<p>使用训练好的GBDT进行特征筛选，构造新的训练集和测试集：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span><span class="type">_train_data</span> = X.ix[:<span class="type"></span>,gbdt.feature_importances_&gt;<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="keyword">new</span><span class="type">_test_data</span> = <span class="keyword">new</span><span class="type">_test_data</span>.ix[:<span class="type"></span>,gbdt.feature_importances_&gt;<span class="number">0</span>]</div></pre></td></tr></table></figure></p>
+<h2 id="2-2-Feature-Rebuilding"><a href="#2-2-Feature-Rebuilding" class="headerlink" title="2.2 Feature Rebuilding"></a>2.2 Feature Rebuilding</h2><p>使用facebook2014方案，进行特征构造</p>
+<p>定义弱分类器的数目：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">n_estimator</span> = <span class="number">10</span></div></pre></td></tr></table></figure></p>
+<p>拆分训练数据，分别用于训练GBDT分类器和LR分类器<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from sklearn.model_selection <span class="keyword">import</span> train_test_split</div><div class="line"></div><div class="line">X_train, X_train_lr, y_train, y_train_lr = train_test_split(<span class="keyword">new</span><span class="type">_train_data</span>, y, test_size=<span class="number">0.5</span>)</div></pre></td></tr></table></figure></p>
+<p>调用GBDT分类模型<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">grd = GradientBoostingClassifier(n_estimators=n_estimator)</div><div class="line"></div><div class="line"><span class="comment">#调用one-hot编码</span></div><div class="line">from sklearn.preprocessing import OneHotEncoder</div><div class="line">grd_enc = OneHotEncoder()</div><div class="line"></div><div class="line"><span class="comment">#调用LR分类模型</span></div><div class="line">from sklearn.linear_model import LogisticRegression</div><div class="line">grd_lm = LogisticRegression()</div><div class="line"></div><div class="line"><span class="comment">#使用X_train训练GBDT模型，后面用此模型构造特征</span></div><div class="line">grd.fit(X_train, y_train)</div><div class="line"></div><div class="line"><span class="comment">#fit one-hot编码器</span></div><div class="line"><span class="section">grd_enc.fit(grd.apply(X_train)[:, :, 0])</span></div><div class="line"></div><div class="line"><span class="comment">#使用训练好的GBDT模型构建特征，然后将特征经过one-hot编码作为新的特征输入到LR模型训练。</span></div><div class="line"><span class="section">grd_lm.fit(grd_enc.transform(grd.apply(X_train_lr)[:, :, 0]), y_train_lr)</span></div><div class="line">y_pred_grd_lm = grd_lm.predict_proba(grd_enc.transform(grd.apply(new_test_data)[:, :, 0]))[:, 1]</div><div class="line"></div><div class="line"><span class="comment">#预测结果</span></div><div class="line">y_predict = grd_lm.predict(grd_enc.transform(grd.apply(new_test_data)[:, :, 0]))</div></pre></td></tr></table></figure></p>
+<h2 id="2-3-Evaluation-the-Results"><a href="#2-3-Evaluation-the-Results" class="headerlink" title="2.3 Evaluation the Results"></a>2.3 Evaluation the Results</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">logloss</span><span class="params">(act, pred)</span>:</span></div><div class="line"><span class="string">'''</span></div><div class="line">比赛使用logloss作为evaluation</div><div class="line">'''</div><div class="line">    epsilon = <span class="number">1e-15</span></div><div class="line"></div><div class="line">    pred = sp.maximum(epsilon, pred)</div><div class="line"></div><div class="line">    pred = sp.minimum(<span class="number">1</span>-epsilon, pred)</div><div class="line"></div><div class="line">    ll = sum(act*sp.log(pred) + sp.subtract(<span class="number">1</span>,act)*sp.log(sp.subtract(<span class="number">1</span>,pred)))</div><div class="line"></div><div class="line">    ll = ll * <span class="number">-1.0</span>/len(act)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ll</div><div class="line">    </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_metrics</span><span class="params">(true_values, predicted_values)</span>:</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">"logloss: "</span> + str(logloss(true_values, predicted_values)))</div><div class="line">    <span class="keyword">print</span> (<span class="string">"Accuracy: "</span> + str( metrics.accuracy_score(true_values, predicted_values)))</div><div class="line">    <span class="keyword">print</span> (<span class="string">"AUC: "</span> + str (metrics.roc_auc_score(true_values, predicted_values)))</div><div class="line">    <span class="keyword">print</span> (<span class="string">"Confusion Matrix: "</span>  +  str(metrics.confusion_matrix(true_values, predicted_values)))</div><div class="line">    <span class="keyword">print</span> (metrics.classification_report(true_values, predicted_values))</div></pre></td></tr></table></figure>
+<h1 id="Appendix-Find-the-Best-Params-by-GridSearchCV"><a href="#Appendix-Find-the-Best-Params-by-GridSearchCV" class="headerlink" title="Appendix : Find the Best Params by GridSearchCV"></a>Appendix : Find the Best Params by GridSearchCV</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用gridsearchCV选择最优参数</span></div><div class="line"><span class="keyword">from</span> sklearn.grid_search <span class="keyword">import</span> GridSearchCV</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_LR_params</span><span class="params">(x_train, y_train)</span>:</span></div><div class="line">    param_LR= &#123;<span class="string">'C'</span>:[<span class="number">0.1</span>,<span class="number">1</span>,<span class="number">2</span>]&#125;</div><div class="line">    gsearch_LR = GridSearchCV(estimator = LogisticRegression(penalty=<span class="string">'l1'</span>,solver=<span class="string">'liblinear'</span>), param_grid=param_LR,cv=<span class="number">3</span>)</div><div class="line">    print(<span class="string">"Performing grid search..."</span>)</div><div class="line">    t0 = time()</div><div class="line">    gsearch_LR.fit(x_train,y_train)</div><div class="line">    print(<span class="string">"done in %0.3fs"</span> % (time() - t0))</div><div class="line">    print()</div><div class="line">    print(<span class="string">"Best score: %0.3f"</span> % gsearch_LR.best_score_)</div><div class="line">    print(<span class="string">"Best params: "</span>)</div><div class="line">    print(gsearch_LR.best_params_)</div><div class="line">    <span class="comment">#return gsearch_LR.grid_scores_, gsearch_LR.best_params_, gsearch_LR.best_score_</span></div><div class="line">    </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_GBDT_params</span><span class="params">(x_train, y_train)</span>:</span></div><div class="line">    param_GBDT = &#123;</div><div class="line">    <span class="string">'max_depth'</span>: (<span class="number">3</span>, <span class="number">5</span>),</div><div class="line">    <span class="string">'n_estimators'</span>: (<span class="number">50</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>),</div><div class="line">    <span class="string">'learning_rate'</span>: (<span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">0.5</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    gsearch_GBDT = GridSearchCV(estimator =GradientBoostingClassifier(), param_grid=param_GBDT, cv=<span class="number">10</span>)</div><div class="line">    print(<span class="string">"Performing grid search..."</span>)</div><div class="line">    t0 = time()</div><div class="line">    gsearch_GBDT.fit(x_train,y_train)</div><div class="line">    print(<span class="string">"done in %0.3fs"</span> % (time() - t0))</div><div class="line">    print()</div><div class="line">    <span class="comment">#gsearch_GBDT.grid_scores_</span></div><div class="line">    <span class="comment"># 输出best score</span></div><div class="line">    print(<span class="string">"Best score: %0.3f"</span> % gsearch_GBDT.best_score_)</div><div class="line">    print(<span class="string">"Best parameters set:"</span>)</div><div class="line">    print(gsearch_GBDT.best_params_)</div><div class="line"></div><div class="line"><span class="comment">#寻找最佳参数：</span></div><div class="line"><span class="comment">#find_GBDT_params(new_train_data, y) # find best params for GBDT</span></div><div class="line"><span class="comment">#find_LR_params(grd_enc.transform(grd.apply(X_train_lr)[:, :, 0]), y_train_lr) # find best params for Logistic Regression</span></div></pre></td></tr></table></figure>
+<p><strong>最终，使用的最优参数为</strong>：</p>
+<p>GBDT参数：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">n_estimator</span> = <span class="number">200</span></div><div class="line"><span class="attr">learning_rate</span> = <span class="number">0.3</span></div><div class="line"><span class="attr">max_depth</span> = <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<p>LR参数：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">C</span> = <span class="number">1.0</span></div></pre></td></tr></table></figure></p>
+<p>准确率和召回率等评测指标就不列出来了。</p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>Rewards</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">As you wish</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/A-CTR-Experiment.html">A CTR Prediction Experiment</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Bruce J 的个人博客">Bruce J</a></p>
+        <p><span>发布时间:</span>2017年07月18日 - 21时46分</p>
+        <p><span>最后更新:</span>2017年07月26日 - 22时09分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/A-CTR-Experiment.html" title="A CTR Prediction Experiment">http://july7.me/A-CTR-Experiment.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://july7.me/A-CTR-Experiment.html　　作者: Bruce J" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/Feature-Engineering.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Feature Engineering</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Preparing-Data"><span class="toc-number">1.</span> <span class="toc-text">1. Preparing Data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Feature-Processing"><span class="toc-number">2.</span> <span class="toc-text">2. Feature Processing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Feature-Selection"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Feature Selection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Feature-Rebuilding"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Feature Rebuilding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Evaluation-the-Results"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Evaluation the Results</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Appendix-Find-the-Best-Params-by-GridSearchCV"><span class="toc-number">3.</span> <span class="toc-text">Appendix : Find the Best Params by GridSearchCV</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'bruce',
+      repo: 'jimmy1357.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/Feature-Engineering.html" title="下一篇: Feature Engineering">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/A-CTR-Experiment.html">A CTR Prediction Experiment</a></li><li class="post-list-item"><a class="post-list-link" href="/Feature-Engineering.html">Feature Engineering</a></li><li class="post-list-item"><a class="post-list-link" href="/hello-world.html">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/Hexo-Admin-插件错误小结.html">Errors when using Hexo Admin </a></li><li class="post-list-item"><a class="post-list-link" href="/Just-for-fun.html">Just for fun</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 Bruce J
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >一笑回眸: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">擦肩而过: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -6,7 +6,7 @@
     
     
   <url>
-    <loc>http://www.july7.me/2017/06/16/Just-for-fun/</loc>
+    <loc>http://july7.me/Just-for-fun.html</loc>
     <lastmod>2017-07-26T14:10:33.970Z</lastmod>
     <data>
         <display>
@@ -18,7 +18,7 @@
          
            
              
-              <breadCrumb title="tools" url="http://www.july7.me/categories/tools/"/>
+              <breadCrumb title="tools" url="http://july7.me/categories/tools/"/>
           
         </display>
     </data>
@@ -26,7 +26,7 @@
 
     
   <url>
-    <loc>http://www.july7.me/2017/06/29/Feature-Engineering/</loc>
+    <loc>http://july7.me/Feature-Engineering.html</loc>
     <lastmod>2017-07-26T14:09:54.890Z</lastmod>
     <data>
         <display>
@@ -38,7 +38,7 @@
          
            
              
-              <breadCrumb title="Machine Learning" url="http://www.july7.me/categories/Machine-Learning/"/>
+              <breadCrumb title="Machine Learning" url="http://july7.me/categories/Machine-Learning/"/>
           
         </display>
     </data>
@@ -46,7 +46,7 @@
 
     
   <url>
-    <loc>http://www.july7.me/2017/07/18/A-CTR-Experiment/</loc>
+    <loc>http://july7.me/A-CTR-Experiment.html</loc>
     <lastmod>2017-07-26T14:09:09.910Z</lastmod>
     <data>
         <display>
@@ -60,7 +60,7 @@
          
            
              
-              <breadCrumb title="Machine Learning" url="http://www.july7.me/categories/Machine-Learning/"/>
+              <breadCrumb title="Machine Learning" url="http://july7.me/categories/Machine-Learning/"/>
           
         </display>
     </data>
@@ -70,7 +70,7 @@
     
     
   <url>
-    <loc>http://www.july7.me/2017/06/17/hello-world/</loc>
+    <loc>http://july7.me/hello-world.html</loc>
     <lastmod>2017-06-17T14:25:57.062Z</lastmod>
     <data>
         <display>
@@ -85,7 +85,7 @@
 
     
   <url>
-    <loc>http://www.july7.me/2017/06/17/Hexo-Admin-%E6%8F%92%E4%BB%B6%E9%94%99%E8%AF%AF%E5%B0%8F%E7%BB%93/</loc>
+    <loc>http://july7.me/Hexo-Admin-%E6%8F%92%E4%BB%B6%E9%94%99%E8%AF%AF%E5%B0%8F%E7%BB%93.html</loc>
     <lastmod>2017-06-17T14:11:14.832Z</lastmod>
     <data>
         <display>
@@ -97,7 +97,7 @@
          
            
              
-              <breadCrumb title="tools" url="http://www.july7.me/categories/tools/"/>
+              <breadCrumb title="tools" url="http://july7.me/categories/tools/"/>
           
         </display>
     </data>
