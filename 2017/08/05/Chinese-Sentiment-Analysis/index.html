@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>July7</title>
+  <title>Chinese Sentiment Analysis | July7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不忘初心 方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="July7">
-<meta property="og:url" content="http://july7.me/index.html">
+  <meta name="description" content="Sentiment analysis (sometimes known as opinion mining or emotion AI) refers to the use of natural language processing, text analysis, computational linguistics, and biometrics to systematically identi">
+<meta name="keywords" content="Sentiment Analysis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chinese Sentiment Analysis">
+<meta property="og:url" content="http://july7.me/2017/08/05/Chinese-Sentiment-Analysis/index.html">
 <meta property="og:site_name" content="July7">
-<meta property="og:description" content="不忘初心 方得始终">
+<meta property="og:description" content="Sentiment analysis (sometimes known as opinion mining or emotion AI) refers to the use of natural language processing, text analysis, computational linguistics, and biometrics to systematically identi">
+<meta property="og:updated_time" content="2017-08-05T17:06:35.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="July7">
-<meta name="twitter:description" content="不忘初心 方得始终">
+<meta name="twitter:title" content="Chinese Sentiment Analysis">
+<meta name="twitter:description" content="Sentiment analysis (sometimes known as opinion mining or emotion AI) refers to the use of natural language processing, text analysis, computational linguistics, and biometrics to systematically identi">
   
     <link rel="alternative" href="/atom.xml" title="July7" type="application/atom+xml">
   
@@ -27,9 +29,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -41,8 +40,8 @@
           rootUrl: '/',
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -215,9 +214,7 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-Chinese-Sentiment-Analysis" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Chinese-Sentiment-Analysis" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/08/05/Chinese-Sentiment-Analysis/" class="article-date">
@@ -233,12 +230,27 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/Chinese-Sentiment-Analysis/">Chinese Sentiment Analysis</a>
+    <h1 class="article-title" itemprop="name">
+      Chinese Sentiment Analysis
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentiment-Analysis/">Sentiment Analysis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -299,312 +311,192 @@
 
       
       
-    </div>
-    
-    <div class="article-info article-info-index">
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>Rewards</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">As you wish</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
       
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentiment-Analysis/">Sentiment Analysis</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-A-CTR-Experiment" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/07/18/A-CTR-Experiment/" class="article-date">
-      <time datetime="2017-07-18T13:46:00.000Z" itemprop="datePublished">2017-07-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/18/A-CTR-Experiment/">A CTR Prediction Experiment</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-Preparing-Data"><a href="#1-Preparing-Data" class="headerlink" title="1. Preparing Data"></a>1. Preparing Data</h1><p>数据取自kaggle的CTR竞赛: <a href="http://www.kaggle.com/c/avazu-ctr-prediction/data" target="_blank" rel="external">http://www.kaggle.com/c/avazu-ctr-prediction/data</a></p>
-<div align="center"><br><img src="/images/pasted-26.png" alt="将数据解压转换为csv文件"><br></div>
-
-<p>构造test_fromtrain.csv数据，取train.csv的第一行（列名）及第10000001行开始的100万行数据。</p>
-<p>tips：shell code<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -n “2,5p“ filename 读取第2到第5行</div></pre></td></tr></table></figure></p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTR/">CTR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Feature-Engineering/">Feature Engineering</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/07/18/A-CTR-Experiment/#more">For More >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/05/Chinese-Sentiment-Analysis/">Chinese Sentiment Analysis</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Chen 的个人博客">Chen</a></p>
+        <p><span>发布时间:</span>2017年08月05日 - 18时24分</p>
+        <p><span>最后更新:</span>2017年08月06日 - 01时06分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/05/Chinese-Sentiment-Analysis/" title="Chinese Sentiment Analysis">http://july7.me/2017/08/05/Chinese-Sentiment-Analysis/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://july7.me/2017/08/05/Chinese-Sentiment-Analysis/　　作者: Chen" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Feature-Engineering" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/29/Feature-Engineering/" class="article-date">
-      <time datetime="2017-06-29T14:11:00.000Z" itemprop="datePublished">2017-06-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/29/Feature-Engineering/">Feature Engineering</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-特征变换"><a href="#1-特征变换" class="headerlink" title="1.特征变换"></a>1.特征变换</h1>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Feature-Engineering/">Feature Engineering</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/06/29/Feature-Engineering/#more">For More >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/18/A-CTR-Experiment/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">A CTR Prediction Experiment</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Corpus"><span class="toc-number">1.</span> <span class="toc-text">1.Corpus</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Data-preprocessing"><span class="toc-number">2.</span> <span class="toc-text">2. Data preprocessing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Training-a-classifier"><span class="toc-number">3.</span> <span class="toc-text">3. Training a classifier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-rnnlm"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 rnnlm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-word2vec-logistic-regression"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 word2vec + logistic regression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-TF-IDF-LR"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 TF-IDF + LR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-Combination"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 Combination</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Using-these-models-to-predict"><span class="toc-number">4.</span> <span class="toc-text">4. Using these models to predict</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Appendix-A-CNN-model-for-text-classification"><span class="toc-number">5.</span> <span class="toc-text">Appendix: A CNN model for text classification</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
 
 
 
 
 
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
 
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/17/hello-world/" class="article-date">
-      <time datetime="2017-06-17T14:00:54.000Z" itemprop="datePublished">2017-06-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'july7-me'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
     
-    
-      <header class="article-header">
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a  href="/2017/06/17/hello-world/#more">For More >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hexo-Admin-插件错误小结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/17/Hexo-Admin-插件错误小结/" class="article-date">
-      <time datetime="2017-06-17T05:48:00.000Z" itemprop="datePublished">2017-06-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/17/Hexo-Admin-插件错误小结/">Errors when using Hexo Admin </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="Errors-when-using-Hexo-Admin"><a href="#Errors-when-using-Hexo-Admin" class="headerlink" title="Errors when using Hexo Admin"></a>Errors when using Hexo Admin</h1><h3 id="1-deploy-Config-value-“admin-deployCommand”-not-found"><a href="#1-deploy-Config-value-“admin-deployCommand”-not-found" class="headerlink" title="1.deploy: Config value “admin.deployCommand” not found"></a>1.deploy: Config value “admin.deployCommand” not found</h3><p>create deploy-script in <strong><em>project dir</em></strong>:<br>
-          
-      
-      
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/07/18/A-CTR-Experiment/" title="下一篇: A CTR Prediction Experiment">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/tools/">tools</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/06/17/Hexo-Admin-插件错误小结/#more">For More >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/05/Chinese-Sentiment-Analysis/">Chinese Sentiment Analysis</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/A-CTR-Experiment/">A CTR Prediction Experiment</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/Feature-Engineering/">Feature Engineering</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/17/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/17/Hexo-Admin-插件错误小结/">Errors when using Hexo Admin </a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Just-for-fun/">Just for fun</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
 
+    <script>
+        
+    </script>
 
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </div>
       <footer id="footer">
     <div class="outer">
