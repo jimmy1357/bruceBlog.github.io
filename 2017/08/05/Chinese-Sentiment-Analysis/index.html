@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="July7">
 <meta property="og:description" content="Sentiment analysis (sometimes known as opinion mining or emotion AI) refers to the use of natural language processing, text analysis, computational linguistics, and biometrics to systematically identi">
 <meta property="og:image" content="http://july7.me/images/pasted-35.png">
-<meta property="og:updated_time" content="2017-08-19T14:46:24.162Z">
+<meta property="og:updated_time" content="2017-08-19T15:00:22.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chinese Sentiment Analysis">
 <meta name="twitter:description" content="Sentiment analysis (sometimes known as opinion mining or emotion AI) refers to the use of natural language processing, text analysis, computational linguistics, and biometrics to systematically identi">
@@ -323,14 +323,15 @@
 <h2 id="Convolution-layer"><a href="#Convolution-layer" class="headerlink" title="Convolution layer"></a>Convolution layer</h2><p>卷积层, 与inception-v3有点类似, 是由3个不同的卷积层(这么说也许不恰当)拼接(或者并联?)而成的. 更通俗的说, 是将三种不同的卷积层分别训练，然后用concat函数在深度一维联结起来.</p>
 <p>3个不同的卷积层的卷积核分别为 3 * 100, 4 * 100, 5 * 100, 都采用VALID非填充方式, 步长为 1 * 1, 输出通道数为128(输入通道数为1). 在本例中,如果m值(最大词数)为100.</p>
 <p>我们试着计算一下每种卷积核的参数个数:</p>
-<p>$$ 3 <em> 100 </em> 1 * 128 $$</p>
-<p>$$ 4 <em> 100 </em> 1 * 128 $$</p>
-<p>$$ 5 <em> 100 </em> 1 * 128 $$</p>
+<div align="center"><br><br> 3 * 100 * 1 * 128<br><br> 4 * 100 * 1 * 128<br><br> 5 * 100 * 1 * 128<br><br></div>
+
 <p>经过卷积处理过后的图像将分别为: </p>
-<p>$$ (100 -3 +1) <em> (100 -100 + 1) = 98 </em> 1 $$</p>
-<p>$$ (100 -4 +1) <em> (100 -100 + 1) = 97 </em> 1 $$</p>
-<p>$$ (100 -5 +1) <em> (100 -100 + 1) = 96 </em> 1 $$</p>
-<p>变成了一个列向量.</p>
+<div align="center">
+
+<p> (100 -3 +1) * (100 -100 + 1) = 98 * 1</p>
+<p> (100 -4 +1) * (100 -100 + 1) = 97 * 1</p>
+<p> (100 -5 +1) * (100 -100 + 1) = 96 * 1</p>
+<p></p></div><br>变成了一个列向量.<p></p>
 <h2 id="Max-pool-layer"><a href="#Max-pool-layer" class="headerlink" title="Max-pool layer"></a>Max-pool layer</h2><p>为了处理三种不同的卷积层输出, 需要设计三种不同的最大池化层.这里的池化层非常简单,就是分别从上述卷积层输出的向量中,选取出最大的值.即,输出是一个 1 * 1的实数.(严格的说是一个 1 * 1 * 128的长方体, 考虑卷积核的个数的话)</p>
 <h2 id="Concat"><a href="#Concat" class="headerlink" title="Concat"></a>Concat</h2><p>好了,经过池化层以后,我们可以把输出concat起来了,注意,是在深度一维进行的(类似于三种不同颜色但大小相同的乐高积木,串联成一个更长的长方体: 1 * 1 * 384)</p>
 <p>这并不是一层, 只是一种trick.</p>
@@ -401,7 +402,7 @@
         <p><span>本文标题:</span><a href="/2017/08/05/Chinese-Sentiment-Analysis/">Chinese Sentiment Analysis</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Chen 的个人博客">Chen</a></p>
         <p><span>发布时间:</span>2017年08月05日 - 18时24分</p>
-        <p><span>最后更新:</span>2017年08月19日 - 22时46分</p>
+        <p><span>最后更新:</span>2017年08月19日 - 23时00分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/05/Chinese-Sentiment-Analysis/" title="Chinese Sentiment Analysis">http://july7.me/2017/08/05/Chinese-Sentiment-Analysis/</a>
             <span class="copy-path" data-clipboard-text="原文: http://july7.me/2017/08/05/Chinese-Sentiment-Analysis/　　作者: Chen" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
